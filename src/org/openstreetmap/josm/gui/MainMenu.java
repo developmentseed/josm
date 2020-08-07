@@ -107,6 +107,8 @@ import org.openstreetmap.josm.actions.UnselectAllAction;
 import org.openstreetmap.josm.actions.UpdateDataAction;
 import org.openstreetmap.josm.actions.UpdateModifiedAction;
 import org.openstreetmap.josm.actions.UpdateSelectionAction;
+import org.openstreetmap.josm.actions.UpdatetagAction_No;
+import org.openstreetmap.josm.actions.UpdatetagAction_Unrecognized;
 import org.openstreetmap.josm.actions.UploadAction;
 import org.openstreetmap.josm.actions.UploadSelectionAction;
 import org.openstreetmap.josm.actions.ViewportFollowToggleAction;
@@ -279,6 +281,15 @@ public class MainMenu extends JMenuBar {
     public final FollowLineAction followLine = new FollowLineAction();
     /** Tools / Add Node... */
     public final AddNodeAction addNode = new AddNodeAction();
+    // Rub21
+    //=================================Start
+
+    /** Tools / Add Node... */
+    public final UpdatetagAction_No updatetagAction_no = new UpdatetagAction_No();
+    public final UpdatetagAction_Unrecognized updatetagAction_Unrecognized = new UpdatetagAction_Unrecognized();
+
+    //=================================Start
+
     /** Tools / Move Node... */
     public final MoveNodeAction moveNode = new MoveNodeAction();
     /** Tools / Create Circle */
@@ -416,6 +427,12 @@ public class MainMenu extends JMenuBar {
      */
     public final JMenu helpMenu = addMenu("Help", /* I18N: mnemonic: H */ trc("menu", "Help"), KeyEvent.VK_H, 12, ht("/Menu/Help"));
 
+    // Rub21
+    //============================================start
+    public final JMenu tagMenu = addMenu("Tags", /* I18N: mnemonic: H */ trc("menu", "Tags"), KeyEvent.VK_S, 13, ht("/Menu/Help"));
+
+    //============================================start
+   
     private static final int defaultMenuPos = 12;
 
     /** Move the selection up */
@@ -866,6 +883,8 @@ public class MainMenu extends JMenuBar {
         toolsMenu.addSeparator();
         add(toolsMenu, followLine, true);
         add(toolsMenu, addNode, true);
+
+
         add(toolsMenu, moveNode, true);
         add(toolsMenu, createCircle);
         toolsMenu.addSeparator();
@@ -903,6 +922,15 @@ public class MainMenu extends JMenuBar {
         add(helpMenu, help);
         add(helpMenu, about);
 
+        
+        // Rub21
+        //======================================= start
+        tagMenu.addSeparator();
+        add(tagMenu, updatetagAction_no, true);
+        add(tagMenu, updatetagAction_Unrecognized, true);
+        
+        //=================================end
+        
         windowMenu.addMenuListener(menuSeparatorHandler);
 
         new EditLayerMenuEnabler(Arrays.asList(modeMenu, toolsMenu, moreToolsMenu, selectionMenu));

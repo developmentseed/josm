@@ -67,7 +67,7 @@ public final class Node extends OsmPrimitive implements INode {
 
                 // Rub21
                 //=========================================================== start
-                System.out.println("Point has been moved, update tags....)");
+//                System.out.println("Point has been moved, update tags....)");
 
                 //Get source layer
                 List<Layer> layers = MainApplication.getLayerManager().getLayers();
