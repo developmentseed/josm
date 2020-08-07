@@ -354,9 +354,19 @@ public class AutoScaleAction extends JosmAction {
         if (v.getBounds() == null) {
             return;
         }
+        // Rub21
+        //============================================ start 
+        System.out.println("Set zoom 18 on selection)");
+        v.enlargeBoundingBox();
+        v.enlargeBoundingBox();
+        v.enlargeBoundingBox();
+        v.enlargeBoundingBox();
+        v.enlargeBoundingBox();
+        v.enlargeBoundingBox();
+        //============================================ end
 
         MainApplication.getMap().mapView.zoomTo(v);
-    }
+     }
 
     private void modeDownload() {
         if (lastZoomTime > 0 &&
