@@ -83,7 +83,7 @@ public final class Node extends OsmPrimitive implements INode {
                 Collection<Command> commands = new ArrayList<>();
                 commands.add(new ChangePropertyCommand(this, "dc_has_pattern_school", "yes"));
                 commands.add(new ChangePropertyCommand(this, "dc_point_moved", "yes"));
-                commands.add(new ChangePropertyCommand(this, "dc_imagery_source", str_layers));
+//                commands.add(new ChangePropertyCommand(this, "dc_imagery_source", str_layers));
                 SequenceCommand sequenceCommand = new SequenceCommand("change values", commands);
                 sequenceCommand.executeCommand();
 
