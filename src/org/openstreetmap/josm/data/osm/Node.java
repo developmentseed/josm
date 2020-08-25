@@ -80,12 +80,12 @@ public final class Node extends OsmPrimitive implements INode {
                 String str_layers = String.join(",", list_layers);
 
                 //Set commands for updating
-                Collection<Command> commands = new ArrayList<>();
-                commands.add(new ChangePropertyCommand(this, "dc_has_pattern_school", "yes"));
-                commands.add(new ChangePropertyCommand(this, "dc_point_moved", "yes"));
-//                commands.add(new ChangePropertyCommand(this, "dc_imagery_source", str_layers));
-                SequenceCommand sequenceCommand = new SequenceCommand("change values", commands);
-                sequenceCommand.executeCommand();
+//                Collection<Command> commands = new ArrayList<>();
+//                commands.add(new ChangePropertyCommand(this, "_visited", "TRUE"));
+//                commands.add(new ChangePropertyCommand(this, "_best_locat", "TRUE"));
+////                commands.add(new ChangePropertyCommand(this, "dc_imagery_source", str_layers));
+//                SequenceCommand sequenceCommand = new SequenceCommand("change values", commands);
+//                sequenceCommand.executeCommand();
 
                 //                 UndoRedoHandler.getInstance().add(new SequenceCommand(
                 //                        trn("Change properties of up to {0} object",

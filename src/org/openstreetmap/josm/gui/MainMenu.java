@@ -107,9 +107,9 @@ import org.openstreetmap.josm.actions.UnselectAllAction;
 import org.openstreetmap.josm.actions.UpdateDataAction;
 import org.openstreetmap.josm.actions.UpdateModifiedAction;
 import org.openstreetmap.josm.actions.UpdateSelectionAction;
-import org.openstreetmap.josm.actions.UpdatetagAction_No;
-import org.openstreetmap.josm.actions.UpdatetagAction_Unrecognized;
-import org.openstreetmap.josm.actions.UpdatetagAction_Uuids;
+import org.openstreetmap.josm.actions.UpdatetagAction_GroupBestLocation;
+import org.openstreetmap.josm.actions.UpdatetagAction_BestLocation;
+import org.openstreetmap.josm.actions.UpdatetagAction_NeedSme;
 import org.openstreetmap.josm.actions.UploadAction;
 import org.openstreetmap.josm.actions.UploadSelectionAction;
 import org.openstreetmap.josm.actions.ViewportFollowToggleAction;
@@ -286,9 +286,9 @@ public class MainMenu extends JMenuBar {
     //=================================Start
 
     /** Tools / Add Node... */
-    public final UpdatetagAction_No updatetagAction_no = new UpdatetagAction_No();
-    public final UpdatetagAction_Unrecognized updatetagAction_Unrecognized = new UpdatetagAction_Unrecognized();
-    public final UpdatetagAction_Uuids updatetagAction_Uuids = new UpdatetagAction_Uuids();
+    public final UpdatetagAction_BestLocation updatetagAction_BestLocation = new UpdatetagAction_BestLocation();
+    public final UpdatetagAction_NeedSme updatetagAction_NeedSme = new UpdatetagAction_NeedSme();
+    public final UpdatetagAction_GroupBestLocation updatetagAction_GroupBestLocation = new UpdatetagAction_GroupBestLocation();
 
     //=================================Start
 
@@ -928,9 +928,9 @@ public class MainMenu extends JMenuBar {
         // Rub21
         //======================================= start
         tagMenu.addSeparator();
-        add(tagMenu, updatetagAction_no, true);
-        add(tagMenu, updatetagAction_Unrecognized, true);
-        add(tagMenu, updatetagAction_Uuids, true);
+        add(tagMenu, updatetagAction_BestLocation, true);
+        add(tagMenu, updatetagAction_GroupBestLocation, true);
+        add(tagMenu, updatetagAction_NeedSme, true);
 
         //=================================end
         
