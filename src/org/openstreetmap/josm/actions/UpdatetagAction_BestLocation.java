@@ -53,7 +53,7 @@ public final class UpdatetagAction_BestLocation extends JosmAction {
         //Set commands for updating
         Collection<Command> commands = new ArrayList<>();
        
-        commands.add(new ChangePropertyCommand(selection, "_best_locat", "TRUE"));
+        commands.add(new ChangePropertyCommand(selection, "_best_loca", "TRUE"));
         commands.add(new ChangePropertyCommand(selection, "_needs_sme", "FALSE"));
         commands.add(new ChangePropertyCommand(selection, "_visited", "TRUE"));
         SequenceCommand sequenceCommand = new SequenceCommand("change values", commands);

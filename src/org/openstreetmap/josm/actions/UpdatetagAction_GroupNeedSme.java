@@ -6,6 +6,7 @@ import static org.openstreetmap.josm.tools.I18n.tr;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Collection;
 import java.util.Collections;
@@ -24,7 +25,7 @@ import org.openstreetmap.josm.gui.Notification;
  * longitude, and when ok is pressed, a new node is created at the specified
  * position.
  */
-public final class UpdatetagAction_NeedSme extends JosmAction {
+public final class UpdatetagAction_GroupNeedSme extends JosmAction {
 
     // remember input from last time
     private String textLatLon, textEastNorth;
@@ -32,11 +33,10 @@ public final class UpdatetagAction_NeedSme extends JosmAction {
     /**
      * Constructs a new {@code AddNodeAction}.
      */
-    public UpdatetagAction_NeedSme() {
-        super(tr("_needs_sme"), "_needs_sme", tr(""),
-                Shortcut.registerShortcut("_needs_sme:TRUE", tr("Edit: {0}", tr("update _needs_sme : TRUE ..")),
-                        KeyEvent.VK_3, Shortcut.SHIFT), true);
-
+    public UpdatetagAction_GroupNeedSme() {
+        super(tr("_modified_:_needs_sme"), "_modified_:_needs_sme", tr(""),
+                Shortcut.registerShortcut("_modified_:_needs_sme", tr("Edit: {0}", tr("update group _modified_g if exist _needs_sme ..")),
+                        KeyEvent.VK_4, Shortcut.SHIFT), true);
     }
 
     @Override
@@ -53,18 +53,34 @@ public final class UpdatetagAction_NeedSme extends JosmAction {
         if (selection.isEmpty()) {
             return;
         }
+        // set best location
+        String group_id = "";
+        System.out.println(selection);
+        List<Object> valuesTrue = new ArrayList<Object>( Arrays.asList("t", "T", 1,"1",true,"TRUE","true"));
+        for (Node node : selection) {
+            boolean answ = valuesTrue.contains(node.getKeys().get("_needs_sme"));
+            if (node.getKeys().get("_group_id") !=null && answ) {
+                group_id = node.getKeys().get("_group_id");
+            }
+        }
 
         //Set commands for updating
         Collection<Command> commands = new ArrayList<>();
-        commands.add(new ChangePropertyCommand(selection, "_best_loca", "FALSE"));
-        commands.add(new ChangePropertyCommand(selection, "_needs_sme", "TRUE"));
-        commands.add(new ChangePropertyCommand(selection, "_visited", "TRUE"));
-        SequenceCommand sequenceCommand = new SequenceCommand("change values", commands);
-        sequenceCommand.executeCommand();
-
+        if (!"".equals(group_id)) {
+            commands.add(new ChangePropertyCommand(selection, "_modified_", group_id));
+            commands.add(new ChangePropertyCommand(selection, "_needs_sme", "TRUE"));
+            commands.add(new ChangePropertyCommand(selection, "_best_loca", "FALSE"));
+            commands.add(new ChangePropertyCommand(selection, "_visited", "TRUE"));
+            SequenceCommand sequenceCommand = new SequenceCommand("change values", commands);
+            sequenceCommand.executeCommand();
+            new Notification(tr("New _modified_g : " + group_id)).setIcon(JOptionPane.INFORMATION_MESSAGE).setDuration(Notification.TIME_SHORT).show();
+        } else {
+            new Notification(tr("Need a node with _needs_sme:TRUE or _group_id  ")).setIcon(JOptionPane.WARNING_MESSAGE).setDuration(Notification.TIME_SHORT).show();
+        }
         // commands.add(new ChangePropertyCommand(selection, "_modified_g", group_id));
         // SequenceCommand sequenceCommand = new SequenceCommand("change values", commands);
         // sequenceCommand.executeCommand();
+
         //=========================================================== start
     }
 

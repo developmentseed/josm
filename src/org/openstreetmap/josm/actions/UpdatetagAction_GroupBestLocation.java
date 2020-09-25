@@ -57,16 +57,16 @@ public final class UpdatetagAction_GroupBestLocation extends JosmAction {
         String group_id = "";
         List<Object> valuesTrue = new ArrayList<Object>( Arrays.asList("t", "T", 1,"1",true,"TRUE","true"));
         for (Node node : selection) {
-            boolean answ = valuesTrue.contains(node.getKeys().get("_best_locat"));
-            if (!node.getKeys().get("_group_id").isBlank() && answ) {
+            boolean answ = valuesTrue.contains(node.getKeys().get("_best_loca"));
+            if (node.getKeys().get("_group_id") !=null && answ) {
                 group_id = node.getKeys().get("_group_id");
             }
         }
 
         //Set commands for updating
         Collection<Command> commands = new ArrayList<>();
-        if (!group_id.isBlank()) {
-            commands.add(new ChangePropertyCommand(selection, "_modified_g", group_id));
+        if (!"".equals(group_id)) {
+            commands.add(new ChangePropertyCommand(selection, "_modified_", group_id));
             commands.add(new ChangePropertyCommand(selection, "_needs_sme", "FALSE"));
             commands.add(new ChangePropertyCommand(selection, "_visited", "TRUE"));
             SequenceCommand sequenceCommand = new SequenceCommand("change values", commands);
