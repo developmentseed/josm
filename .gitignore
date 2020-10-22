@@ -1,0 +1,16 @@
+ide/*
+.josm-local/
+resources/REVISION
+resources/data/projection/
+src/org/openstreetmap/josm/gui/mappaint/mapcss/parsergen/
+tools/ivy/
+build/
+build2/
+dist/
+
+resources/CONTRIBUTION
+resources/LICENSE
+resources/README
+
+src/org/openstreetmap/josm/io/Capabilities.java
+

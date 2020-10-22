@@ -6,15 +6,13 @@ import static org.openstreetmap.josm.tools.I18n.tr;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Collection;
 import java.util.Collections;
 import org.openstreetmap.josm.command.ChangePropertyCommand;
 import org.openstreetmap.josm.command.Command;
 import org.openstreetmap.josm.command.SequenceCommand;
 import org.openstreetmap.josm.data.osm.DataSet;
-import org.openstreetmap.josm.data.osm.Node;
-import org.openstreetmap.josm.data.osm.OsmPrimitive;
+import org.openstreetmap.josm.data.osm.Way;
 import org.openstreetmap.josm.tools.Shortcut;
 
 /**
@@ -22,7 +20,7 @@ import org.openstreetmap.josm.tools.Shortcut;
  * longitude, and when ok is pressed, a new node is created at the specified
  * position.
  */
-public final class UpdatetagAction_Uuids extends JosmAction {
+public final class UpdatetagAction_AddProject extends JosmAction {
 
     // remember input from last time
     private String textLatLon, textEastNorth;
@@ -30,10 +28,10 @@ public final class UpdatetagAction_Uuids extends JosmAction {
     /**
      * Constructs a new {@code AddNodeAction}.
      */
-    public UpdatetagAction_Uuids() {
-        super(tr("uuids=uuid1,uuid2"), "uuids", tr(""),
-                Shortcut.registerShortcut("uuids", tr("Edit: {0}", tr("update tag uuids ..")),
-                        KeyEvent.VK_G, Shortcut.SHIFT), true);
+    public UpdatetagAction_AddProject() {
+        super(tr("project"), "project", tr(""),
+                Shortcut.registerShortcut("project:cccmc_sustainable_rubber", tr("Edit: {0}", tr("Add tag project: cccmc_sustainable_rubber ..")),
+                        KeyEvent.VK_1, Shortcut.SHIFT), true);
 
     }
 
@@ -47,26 +45,22 @@ public final class UpdatetagAction_Uuids extends JosmAction {
         //=========================================================== start
         //Get source layer
         DataSet set = getLayerManager().getActiveDataSet();
-        Collection<Node> selection = set == null ? Collections.<Node>emptySet() : set.getSelectedNodes();
+        Collection<Way> selection = set == null ? Collections.<Way>emptySet() : set.getSelectedWays();
         if (selection.isEmpty()) {
             return;
         }
-        // set uuid
-        List<String> list_uuids = new ArrayList<>();
-        for (Node node : selection) {
-            if (!node.getKeys().containsKey("uuid")) {
-                    continue;
-                }
-            list_uuids.add(node.getKeys().get("uuid"));
-        }
-        String str_uuids = String.join(";", list_uuids);
 
         //Set commands for updating
         Collection<Command> commands = new ArrayList<>();
-        commands.add(new ChangePropertyCommand(selection, "uuids", str_uuids));
+
+        commands.add(new ChangePropertyCommand(selection, "project", "cccmc_sustainable_rubber"));
+        commands.add(new ChangePropertyCommand(selection, "natural", "rubber"));
+
         SequenceCommand sequenceCommand = new SequenceCommand("change values", commands);
         sequenceCommand.executeCommand();
-
+        // commands.add(new ChangePropertyCommand(selection, "_modified_g", group_id));
+        // SequenceCommand sequenceCommand = new SequenceCommand("change values", commands);
+        // sequenceCommand.executeCommand();
         //=========================================================== start
     }
 

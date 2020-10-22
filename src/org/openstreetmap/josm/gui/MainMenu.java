@@ -107,10 +107,7 @@ import org.openstreetmap.josm.actions.UnselectAllAction;
 import org.openstreetmap.josm.actions.UpdateDataAction;
 import org.openstreetmap.josm.actions.UpdateModifiedAction;
 import org.openstreetmap.josm.actions.UpdateSelectionAction;
-import org.openstreetmap.josm.actions.UpdatetagAction_GroupBestLocation;
-import org.openstreetmap.josm.actions.UpdatetagAction_BestLocation;
-import org.openstreetmap.josm.actions.UpdatetagAction_NeedSme;
-import org.openstreetmap.josm.actions.UpdatetagAction_GroupNeedSme;
+import org.openstreetmap.josm.actions.UpdatetagAction_AddProject;
 import org.openstreetmap.josm.actions.UploadAction;
 import org.openstreetmap.josm.actions.UploadSelectionAction;
 import org.openstreetmap.josm.actions.ViewportFollowToggleAction;
@@ -287,10 +284,7 @@ public class MainMenu extends JMenuBar {
     //=================================Start
 
     /** Tools / Add Node... */
-    public final UpdatetagAction_BestLocation updatetagAction_BestLocation = new UpdatetagAction_BestLocation();
-    public final UpdatetagAction_NeedSme updatetagAction_NeedSme = new UpdatetagAction_NeedSme();
-    public final UpdatetagAction_GroupBestLocation updatetagAction_GroupBestLocation = new UpdatetagAction_GroupBestLocation();
-    public final UpdatetagAction_GroupNeedSme updatetagAction_GroupNeedSme = new UpdatetagAction_GroupNeedSme();
+    public final UpdatetagAction_AddProject updatetagAction_addProject = new UpdatetagAction_AddProject();
 
     //=================================Start
 
@@ -930,10 +924,7 @@ public class MainMenu extends JMenuBar {
         // Rub21
         //======================================= start
         tagMenu.addSeparator();
-        add(tagMenu, updatetagAction_BestLocation, true);
-        add(tagMenu, updatetagAction_GroupBestLocation, true);
-        add(tagMenu, updatetagAction_NeedSme, true);
-        add(tagMenu, updatetagAction_GroupNeedSme, true);
+        add(tagMenu, updatetagAction_addProject, true);
 
         //=================================end
         
