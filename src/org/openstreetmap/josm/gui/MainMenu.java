@@ -107,7 +107,9 @@ import org.openstreetmap.josm.actions.UnselectAllAction;
 import org.openstreetmap.josm.actions.UpdateDataAction;
 import org.openstreetmap.josm.actions.UpdateModifiedAction;
 import org.openstreetmap.josm.actions.UpdateSelectionAction;
-import org.openstreetmap.josm.actions.UpdatetagAction_AddProject;
+import org.openstreetmap.josm.actions.UpdatetagAction_no;
+import org.openstreetmap.josm.actions.UpdatetagAction_unrecognized;
+import org.openstreetmap.josm.actions.UpdatetagAction_yes;
 import org.openstreetmap.josm.actions.UploadAction;
 import org.openstreetmap.josm.actions.UploadSelectionAction;
 import org.openstreetmap.josm.actions.ViewportFollowToggleAction;
@@ -284,7 +286,9 @@ public class MainMenu extends JMenuBar {
     //=================================Start
 
     /** Tools / Add Node... */
-    public final UpdatetagAction_AddProject updatetagAction_addProject = new UpdatetagAction_AddProject();
+    public final UpdatetagAction_no updatetagAction_no = new UpdatetagAction_no();
+    public final UpdatetagAction_unrecognized updatetagAction_unrecognized  = new UpdatetagAction_unrecognized();
+    public final UpdatetagAction_yes updatetagAction_yes = new UpdatetagAction_yes();
 
     //=================================Start
 
@@ -924,7 +928,9 @@ public class MainMenu extends JMenuBar {
         // Rub21
         //======================================= start
         tagMenu.addSeparator();
-        add(tagMenu, updatetagAction_addProject, true);
+        add(tagMenu, updatetagAction_no, true);
+        add(tagMenu, updatetagAction_unrecognized, true);
+        add(tagMenu, updatetagAction_yes, true);
 
         //=================================end
         

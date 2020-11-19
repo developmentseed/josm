@@ -14,13 +14,15 @@ import org.openstreetmap.josm.command.SequenceCommand;
 import org.openstreetmap.josm.data.osm.DataSet;
 import org.openstreetmap.josm.data.osm.Way;
 import org.openstreetmap.josm.tools.Shortcut;
+import javax.swing.JOptionPane;
+import org.openstreetmap.josm.gui.Notification;
 
 /**
  * This action displays a dialog where the user can enter a latitude and
  * longitude, and when ok is pressed, a new node is created at the specified
  * position.
  */
-public final class UpdatetagAction_AddProject extends JosmAction {
+public final class UpdatetagAction_no extends JosmAction {
 
     // remember input from last time
     private String textLatLon, textEastNorth;
@@ -28,10 +30,10 @@ public final class UpdatetagAction_AddProject extends JosmAction {
     /**
      * Constructs a new {@code AddNodeAction}.
      */
-    public UpdatetagAction_AddProject() {
-        super(tr("project"), "project", tr(""),
-                Shortcut.registerShortcut("project:cccmc_sustainable_rubber", tr("Edit: {0}", tr("Add tag project: cccmc_sustainable_rubber ..")),
-                        KeyEvent.VK_1, Shortcut.SHIFT), true);
+    public UpdatetagAction_no() {
+        super(tr("ml_school"), "ml_school", tr(""),
+                Shortcut.registerShortcut("ml_school=no", tr("Edit: {0}", tr("Add tag ml_school as no. ..")),
+                        KeyEvent.VK_3, Shortcut.SHIFT), true);
 
     }
 
@@ -53,14 +55,14 @@ public final class UpdatetagAction_AddProject extends JosmAction {
         //Set commands for updating
         Collection<Command> commands = new ArrayList<>();
 
-        commands.add(new ChangePropertyCommand(selection, "project", "cccmc_sustainable_rubber"));
-        commands.add(new ChangePropertyCommand(selection, "natural", "rubber"));
+        commands.add(new ChangePropertyCommand(selection, "ml_school", "no"));
+        commands.add(new ChangePropertyCommand(selection, "ml_reviewed", "yes"));
 
         SequenceCommand sequenceCommand = new SequenceCommand("change values", commands);
         sequenceCommand.executeCommand();
-        // commands.add(new ChangePropertyCommand(selection, "_modified_g", group_id));
-        // SequenceCommand sequenceCommand = new SequenceCommand("change values", commands);
-        // sequenceCommand.executeCommand();
+        
+        new Notification(tr("ml_school : no")).setIcon(JOptionPane.INFORMATION_MESSAGE).setDuration(Notification.TIME_SHORT).show();
+
         //=========================================================== start
     }
 
