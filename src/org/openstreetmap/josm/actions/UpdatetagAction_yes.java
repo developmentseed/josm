@@ -80,7 +80,7 @@ public final class UpdatetagAction_yes extends JosmAction {
 
             commandsNode.add(new ChangePropertyCommand(nodeNew, "ml_school", "yes"));
             commandsNode.add(new ChangePropertyCommand(nodeNew, "ml_reviewed", "yes"));
-            commandsNode.add(new ChangePropertyCommand(nodeNew, "project", "project_connect_p3_ml_output_validation"));
+            commandsNode.add(new ChangePropertyCommand(nodeNew, "project", "project_connect_p3_ml_output"));
 
             SequenceCommand sequenceCommandNode = new SequenceCommand("change values", commandsNode);
             sequenceCommandNode.executeCommand();
